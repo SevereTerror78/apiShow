@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Film extends Model
 {
     use HasFactory;
-    public $timestamps = false; 
+    public $timestamps = false;
 
     protected $fillable = [
-        'title', 
+        'title',
         'director_id',
         'release_date',
         'description',
@@ -21,4 +21,9 @@ class Film extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function actors()
+    {
+        return $this->belongsToMany(Actor::class)->withPivot('is_lead');
+    }
 }

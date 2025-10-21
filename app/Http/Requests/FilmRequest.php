@@ -11,7 +11,7 @@ class FilmRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,13 +21,30 @@ class FilmRequest extends FormRequest
      */
     public function rules(): array
     {
+        if($this->method() == 'PATCH'){
+            return [
+                'title' => 'nullable|string|min:2',
+                'director_id' => 'nullable|numeric',
+                'release_date'=> 'nullable|string|min:2',
+                'description' => 'nullable|string|min:10',
+                'image' => 'nullable|string|min:2',
+                'type_id' => 'nullable|numeric',
+                'lenght' => 'nullable|nullable|numeric',
+                'created_at' => 'nullable|string',
+                'updated_at'=> 'nullable|string',
+            ];          
+        }
+
         return [
             'title' => 'required|string|min:2',
-            'directorId' => 'required|numeric',
+            'director_id' => 'required|numeric',
+            'release_date'=> 'string|min:2',
             'description' => 'required|string|min:10',
-            'picture' => 'required|string|min:20',
-            'typeId' => 'numeric',
-            'lenght' => 'nullable|numeric',
+            'image' => 'string|min:2',
+            'type_id' => 'required|numeric',
+            'lenght' => 'required|nullable|numeric',
+            'created_at' => 'string',
+            'updated_at'=> 'string',
         ];
     }
 }

@@ -6,9 +6,9 @@ We do _not_ use default `SPA Authentication` https://laravel.com/docs/11.x/sanct
 
 | URL          | HTTP method | Auth | JSON Response     |
 | ------------ | ----------- | ---- | ----------------- |
-| /users/login | POST        |      | user's token      |
-| /users       | GET         | Y    | all users         |
-| /films       | GET         |      | all films         |
+| /users/login | POST        |      | user's token      |>>✓
+| /users       | GET         | Y    | all users         |>>✓
+| /films       | GET         |      | all films         |>>✓
 | /films       | POST        | Y    | new film added    |
 | /films       | PATCH       | Y    | edited film       |
 | /films       | DELETE      | Y    | id                |

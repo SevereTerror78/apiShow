@@ -17,8 +17,12 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'rrd',
-            'email' => 'rrd@cwebmania.cc',
+            'email' => 'rrd@cc.cc',
             'password' => '123',
         ]);
+        
+        $this->call(DemoMediaSeeder::class);
+
     }
+
 }
