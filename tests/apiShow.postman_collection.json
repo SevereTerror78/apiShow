@@ -1,0 +1,508 @@
+{
+	"info": {
+		"_postman_id": "fcd273a5-0628-4144-bc09-36520227fca8",
+		"name": "apiShow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38683454"
+	},
+	"item": [
+		{
+			"name": "getUsers",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "pachUsers",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "getFilms",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "postFilms",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5|Xu50B8o215E8O2TZoiL4sBYHfXf1xsr363WmGNhU77adf006",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Interstellar\",\r\n  \"director_id\": 1,\r\n  \"release_date\": \"2014-11-07\",\r\n  \"description\": \"Sci-fi kalandfilm az űr mélyén.\",\r\n  \"image\": \"interstellar.jpg\",\r\n  \"type_id\": 2,\r\n  \"lenght\": 169,\r\n  \"created_at\": \"2025-10-21T00:00:00\",\r\n  \"updated_at\": \"2025-10-21T00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/films",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"films"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patchFilms",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5|Xu50B8o215E8O2TZoiL4sBYHfXf1xsr363WmGNhU77adf006",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Interstellar2\",\r\n  \"director_id\": 1,\r\n  \"release_date\": \"2014-11-07\",\r\n  \"description\": \"Sci-fi kalandfilm az űr mélyén.\",\r\n  \"image\": \"interstellar.jpg\",\r\n  \"type_id\": 2,\r\n  \"lenght\": 169,\r\n  \"created_at\": \"2025-10-21T00:00:00\",\r\n  \"updated_at\": \"2025-10-21T00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/films/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"films",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteFilms",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5|Xu50B8o215E8O2TZoiL4sBYHfXf1xsr363WmGNhU77adf006",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/films/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"films",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSeries",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5|Xu50B8o215E8O2TZoiL4sBYHfXf1xsr363WmGNhU77adf006",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/series",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"series"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postSeries",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "7|nwQCxsJIxPRzZNtzjeuqhBdwmdsIE922oLV6knjm56b9791d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Interstellar\",\r\n  \"director_id\": 1,\r\n  \"release_date\": \"2014-11-07\",\r\n  \"season\":1,\r\n  \"description\": \"Sci-fi kalandfilm az űr mélyén.\",\r\n  \"image\": \"interstellar.jpg\",\r\n  \"type_id\": 2,\r\n  \"lenght\": 169,\r\n  \"created_at\": \"2025-10-21T00:00:00\",\r\n  \"updated_at\": \"2025-10-21T00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/series",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"series"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patchSeries",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "7|nwQCxsJIxPRzZNtzjeuqhBdwmdsIE922oLV6knjm56b9791d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Interstellar2\",\r\n  \"director_id\": 1,\r\n  \"release_date\": \"2014-11-07\",\r\n  \"seasons\":2,\r\n  \"description\": \"Sci-fi kalandfilm az űr mélyén.\",\r\n  \"image\": \"interstellar.jpg\",\r\n  \"type_id\": 2,\r\n  \"lenght\": 169,\r\n  \"created_at\": \"2025-10-21T00:00:00\",\r\n  \"updated_at\": \"2025-10-21T00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/series/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"series",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteSeries",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "7|nwQCxsJIxPRzZNtzjeuqhBdwmdsIE922oLV6knjm56b9791d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/series/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"series",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getActors",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "postActors",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "patchActors",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "7|nwQCxsJIxPRzZNtzjeuqhBdwmdsIE922oLV6knjm56b9791d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Levi200\",\r\n    \"mage\":\"eqwe2102\",\r\n  \"created_at\": \"2025-10-21T00:00:00\",\r\n  \"updated_at\": \"2025-10-21T00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/actors/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"actors",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteActors",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "7|nwQCxsJIxPRzZNtzjeuqhBdwmdsIE922oLV6knjm56b9791d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/actors/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"actors",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getDirectors",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/directors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"directors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postDirectors",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "7|nwQCxsJIxPRzZNtzjeuqhBdwmdsIE922oLV6knjm56b9791d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Levi\",\r\n    \"created_at\": \"2025-10-21T00:00:00\",\r\n    \"updated_at\": \"2025-10-21T00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/directors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"directors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patchDrectors",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "7|nwQCxsJIxPRzZNtzjeuqhBdwmdsIE922oLV6knjm56b9791d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Levike\",\r\n    \"created_at\": \"2025-10-21T00:00:00\",\r\n    \"updated_at\": \"2025-10-21T00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/directors/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"directors",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteDirectors",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "7|nwQCxsJIxPRzZNtzjeuqhBdwmdsIE922oLV6knjm56b9791d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Levike\",\r\n    \"created_at\": \"2025-10-21T00:00:00\",\r\n    \"updated_at\": \"2025-10-21T00:00:00\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/directors/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"directors",
+						"9"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
