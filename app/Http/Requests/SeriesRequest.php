@@ -41,7 +41,7 @@ class SeriesRequest extends FormRequest
             'director_id' => 'required|numeric',
             'release_date'=> 'string|min:2',
             'seasons' =>'nullable|numeric|min:1',
-            'description' => 'required|string|min:10',
+            'description' => 'string|min:10',
             'image' => 'string|min:2',
             'type_id' => 'required|numeric',
             'lenght' => 'required|nullable|numeric',

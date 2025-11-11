@@ -14,6 +14,18 @@ Route::get('/actors', [ActorsController::class, 'index']);
 Route::get('/directors', [DirectorsController::class, 'index']);
 Route::post('/users/login', [UsersController::class, 'login']);
 
+Route::get('/directors/{id}/films', [DirectorsController::class, 'getDirectorFilms']);
+Route::get('/actors/{id}/films', [ActorsController::class, 'getActorFilms']);
+
+Route::get('/films/{id}/directors', [FilmsController::class, 'getFilmDirector']);
+
+Route::patch('/films/{filmId}/directors/{directorId}', [FilmsController::class, 'updateDirector']);
+
+
+Route::delete('/films/{id}/directors', [FilmsController::class, 'removeDirector']);
+
+
+
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/films', [FilmsController::class, 'store']);
     Route::patch('/films/{id}', [FilmsController::class, 'update']);
@@ -30,6 +42,9 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/directors', [DirectorsController::class, 'store']);
     Route::patch('/directors/{id}', [DirectorsController::class, 'update']);
     Route::delete('/directors/{id}', [DirectorsController::class, 'destroy']);
+
+
+    Route::post('/films/{id}/directors', [FilmsController::class, 'addDirector']);
 
     Route::get('/users', [UsersController::class, 'index']);
     

@@ -142,4 +142,39 @@ class DirectorsController extends Controller
             'id' => $id
         ]);
     }
+    /**
+    * @OA\Get(
+    *     path="/api/directors/{id}/films",
+    *     summary="Lekéri a rendező összes filmjét",
+    *     tags={"Directors"},
+    *     @OA\Parameter(
+    *         name="id",
+    *         in="path",
+    *         required=true,
+    *         description="A rendező azonosítója",
+    *         @OA\Schema(type="integer")
+    *     ),
+    *     @OA\Response(
+    *         response=200,
+    *         description="Sikeres lekérés",
+    *         @OA\JsonContent(
+    *             type="object",
+    *             @OA\Property(
+    *                 property="films",
+    *                 type="array",
+    *                 @OA\Items(ref="#/components/schemas/Film")
+    *             )
+    *         )
+    *     )
+    * )
+    */
+    public function getDirectorFilms($id)
+    {
+        $director = Director::with('films')->findOrFail($id);
+    
+        return response()->json([
+            'films' => $director->films,
+        ]);
+    }
+    
 }

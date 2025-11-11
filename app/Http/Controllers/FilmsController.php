@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Film;
+use App\Models\Director;
 use App\Http\Requests\FilmRequest;
+use App\Http\Requests\DirectorsRequest;
+
+use function PHPUnit\Framework\isNull;
+
 /**
  * @apiDefine FilmObject
  * @apiSuccess {Number} id Film azonosítója.
@@ -147,4 +152,56 @@ class FilmsController extends Controller
             'id' => $id
         ]);
     }
+
+//films/directros =>
+
+
+    public function getFilmDirector($filmId)
+    {
+        $film = Film::with('director')->findOrFail($filmId);
+        return response()->json(['director' => $film->director]);
+    }
+    
+
+    public function addDirector(Request $request, $filmId)
+    {
+        $film = Film::findOrFail($filmId);
+        $film->director_id = $request->director_id;
+        $film->save();
+    
+        return response()->json([
+            'message' => 'Director assigned to film successfully',
+            'film_id' => $film->id,
+            'director_id' => $film->director_id
+        ], 201);
+    }
+    
+    public function updateDirector($filmId, $directorId)
+    {
+        $film = Film::findOrFail($filmId);
+        $director = Director::findOrFail($directorId);
+    
+        $film->director_id = $director->id;
+        $film->save();
+    
+        return response()->json([
+            'message' => 'Director updated for the film successfully',
+            'film_id' => $film->id,
+            'director_id' => $film->director_id,
+        ]);
+    }
+
+    public function removeDirector($filmId)
+    {
+        $film = Film::findOrFail($filmId);
+    
+        $film->director_id = null;
+        $film->save();
+    
+        return response()->json([
+            'message' => 'Director removed (set to Unknown)',
+            'film' => $film
+        ]);
+    }
+    
 }

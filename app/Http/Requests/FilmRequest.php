@@ -24,7 +24,7 @@ class FilmRequest extends FormRequest
         if($this->method() == 'PATCH'){
             return [
                 'title' => 'nullable|string|min:2',
-                'director_id' => 'nullable|numeric',
+                'director_id' => 'numeric',
                 'release_date'=> 'nullable|string|min:2',
                 'description' => 'nullable|string|min:10',
                 'image' => 'nullable|string|min:2',
@@ -37,9 +37,9 @@ class FilmRequest extends FormRequest
 
         return [
             'title' => 'required|string|min:2',
-            'director_id' => 'required|numeric',
+            'director_id' => 'numeric',
             'release_date'=> 'string|min:2',
-            'description' => 'required|string|min:10',
+            'description' => 'string|min:10',
             'image' => 'string|min:2',
             'type_id' => 'required|numeric',
             'lenght' => 'required|nullable|numeric',

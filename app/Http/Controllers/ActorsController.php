@@ -142,4 +142,61 @@ class ActorsController extends Controller
             'id' => $id
         ]);
     }
+    
+    /**
+     * @OA\Get(
+     *     path="/api/actors/{id}/films",
+     *     summary="Lekéri a színész összes filmjét",
+     *     tags={"Actors"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="A színész azonosítója",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Sikeres lekérés",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="films",
+     *                 type="array",
+     *                 @OA\Items(ref="#/components/schemas/Film")
+     *             )
+     *         )
+     *     )
+     * )
+     * 
+     * @api {get} /actors/:id/films Színész filmjeinek lekérése
+     * @apiName GetActorFilms
+     * @apiGroup Actors
+     * @apiVersion 1.0.0
+     * 
+     * @apiDescription Lekéri a megadott színészhez tartozó összes filmet.
+     * 
+     * @apiParam {Number} id Színész azonosítója az URL-ben.
+     * 
+     * @apiSuccess {Object[]} films A színészhez kapcsolódó filmek listája.
+     * 
+     * @apiSuccessExample {json} Sikeres válasz:
+     *     HTTP/1.1 200 OK
+     *     {
+     *       "films": [
+     *         { "id": 1, "title": "Inception", "year": 2010 },
+     *         { "id": 2, "title": "The Revenant", "year": 2015 }
+     *       ]
+     *     }
+     * 
+     * @apiError (404) NotFound A megadott ID-val nem található színész.
+     */
+    public function getActorFilms($id)
+    {
+        $actor = Actor::with('films')->findOrFail($id);
+
+        return response()->json([
+            'films' => $actor->films,
+        ]);
+    }
 }

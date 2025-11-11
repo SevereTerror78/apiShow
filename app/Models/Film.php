@@ -22,6 +22,11 @@ class Film extends Model
         'updated_at'
     ];
 
+    public function director()
+    {
+        return $this->belongsTo(Director::class, 'director_id');
+    }
+    
     public function actors()
     {
         return $this->belongsToMany(Actor::class)->withPivot('is_lead');
