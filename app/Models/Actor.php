@@ -17,12 +17,11 @@ class Actor extends Model
         'created_at',
         'updated_at'
     ];
-
     public function films()
     {
         return $this->belongsToMany(Film::class, 'film_actor', 'actor_id', 'film_id')
-            ->withPivot('is_lead')
-            ->withTimestamps();
+                    ->withPivot('is_lead')
+                    ->withTimestamps();
     }
 
     public function series()

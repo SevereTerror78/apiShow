@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Film;
+use App\Models\Actor;
 use App\Models\Director;
 use App\Http\Requests\FilmRequest;
 use App\Http\Requests\DirectorsRequest;
@@ -191,7 +192,7 @@ class FilmsController extends Controller
         ]);
     }
 
-    public function removeDirector($filmId)
+    public function removeDirector($filmId) 
     {
         $film = Film::findOrFail($filmId);
     
@@ -199,9 +200,114 @@ class FilmsController extends Controller
         $film->save();
     
         return response()->json([
-            'message' => 'Director removed (set to Unknown)',
+            'message' => 'Director removed (set to id= 1, becaous id can not be 0)',
             'film' => $film
         ]);
     }
-    
+    //actor
+
+    public function getFilmActors($id)
+    {
+        $film = Film::with('actors')->findOrFail($id);
+
+        return response()->json([
+            'actors' => $film->actors,
+        ]);
+    }
+
+
+    /**
+ * @OA\Post(
+ *     path="/api/films/{id}/actors",
+ *     summary="Színészek hozzáadása egy filmhez",
+ *     tags={"Films"},
+ *     security={{"sanctum":{}}},
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         required=true,
+ *         description="A film azonosítója",
+ *         @OA\Schema(type="integer")
+ *     ),
+ *     @OA\RequestBody(
+ *         required=true,
+ *         @OA\JsonContent(
+ *             type="object",
+ *             @OA\Property(
+ *                 property="actor_ids",
+ *                 type="array",
+ *                 @OA\Items(type="integer"),
+ *                 example={1,2,3}
+ *             )
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Színészek sikeresen hozzáadva a filmhez",
+ *         @OA\JsonContent(
+ *             type="object",
+ *             @OA\Property(property="actors", type="array", @OA\Items(ref="#/components/schemas/Actor"))
+ *         )
+ *     )
+ * )
+ */
+    public function addFilmActors(Request $request, $id)
+    {
+        $film = Film::findOrFail($id);
+
+        $attachData = [];
+        foreach ($request->actor_ids as $actor_id) {
+            $attachData[$actor_id] = [
+                'is_lead' => $request->input('is_lead', 0)
+            ];
+        }
+
+        $film->actors()->syncWithoutDetaching($attachData);
+        $film->load('actors');
+
+        return response()->json([
+            'actors' => $film->actors
+        ], 200);
+    }
+
+    public function updateFilmActor(Request $request, Film $film, Actor $actor)
+    {
+        $request->validate([
+            'is_lead' => 'required|boolean',
+        ]);
+
+        $film->actors()->syncWithoutDetaching([
+            $actor->id => ['is_lead' => $request->input('is_lead')]
+        ]);
+
+        $actor->load('films');
+
+        return response()->json([
+            'message' => 'Film-actor pivot updated successfully',
+            'actor' => $actor,
+            'pivot' => [
+                'is_lead' => $film->actors()->where('actor_id', $actor->id)->first()->pivot->is_lead,
+            ]
+        ]);
+    }
+
+    public function removeFilmActor(Film $film, Actor $actor)
+    {
+        
+        if (!$film->actors()->where('actor_id', $actor->id)->exists()) {
+            return response()->json([
+                'message' => 'Actor not attached to this film'
+            ], 404);
+        }
+
+        
+        $film->actors()->detach($actor->id);
+
+        return response()->json([
+            'message' => 'Actor removed from film successfully',
+            'film_id' => $film->id,
+            'actor_id' => $actor->id
+        ], 200);
+    }
+
 }

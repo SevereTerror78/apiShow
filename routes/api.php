@@ -16,17 +16,13 @@ Route::post('/users/login', [UsersController::class, 'login']);
 
 Route::get('/directors/{id}/films', [DirectorsController::class, 'getDirectorFilms']);
 Route::get('/actors/{id}/films', [ActorsController::class, 'getActorFilms']);
-
-Route::get('/films/{id}/directors', [FilmsController::class, 'getFilmDirector']);
-
-Route::patch('/films/{filmId}/directors/{directorId}', [FilmsController::class, 'updateDirector']);
-
-
-Route::delete('/films/{id}/directors', [FilmsController::class, 'removeDirector']);
-
-
+Route::get('/films/{id}/directors', [FilmsController::class, 'getFilmDirector']); 
+Route::get('/films/{id}/actors', [FilmsController::class, 'getFilmActors']);
 
 Route::middleware('auth:sanctum')->group(function(){
+
+    Route::get('/users', [UsersController::class, 'index']);
+
     Route::post('/films', [FilmsController::class, 'store']);
     Route::patch('/films/{id}', [FilmsController::class, 'update']);
     Route::delete('/films/{id}', [FilmsController::class, 'destroy']);
@@ -43,9 +39,15 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::patch('/directors/{id}', [DirectorsController::class, 'update']);
     Route::delete('/directors/{id}', [DirectorsController::class, 'destroy']);
 
+    //+things
+
+    Route::post('/films/{id}/actors', [FilmsController::class, 'addFilmActors']);
+    Route::patch('/films/{film}/actors/{actor}', [FilmsController::class, 'updateFilmActor']);
+    Route::delete('/films/{film}/actors/{actor}', [FilmsController::class, 'removeFilmActor']);
 
     Route::post('/films/{id}/directors', [FilmsController::class, 'addDirector']);
+    Route::patch('/films/{film}/directors/{director}', [FilmsController::class, 'updateDirector']);
+    Route::delete('/films/{film}/directors/{director}', [FilmsController::class, 'removeDirector']);
 
-    Route::get('/users', [UsersController::class, 'index']);
     
 });

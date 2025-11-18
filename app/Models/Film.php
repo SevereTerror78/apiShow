@@ -29,6 +29,7 @@ class Film extends Model
     
     public function actors()
     {
-        return $this->belongsToMany(Actor::class)->withPivot('is_lead');
+        return $this->belongsToMany(Actor::class, 'film_actor', 'film_id', 'actor_id')->withPivot('is_lead')->withTimestamps(); 
     }
+
 }
