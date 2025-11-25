@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('title');                       
             $table->foreignId('director_id')               
                   ->constrained('directors')
-                  ->cascadeOnUpdate()->restrictOnDelete();
+                  ->cascadeOnUpdate()->restrictOnDelete()->nullable();
             $table->date('release_date')->nullable();      
             $table->text('description')->nullable();       
             $table->string('image')->nullable();           
