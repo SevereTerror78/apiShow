@@ -25,13 +25,13 @@ class FilmFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->unique()->word(),
-            'director_id' => $this->faker->numberBetween(0,100),
-            'description'=>$this->faker->text(),
-            'type_id'=>$this->faker->numberBetween(0, 100),
-            'release_date'=>$this->faker->date(),
-            'length' =>$this->faker->numberBetween(15, 1000)
-
+            'title' => $this->faker->unique()->sentence(2),
+            'release_date' => $this->faker->date(),
+            'description' => $this->faker->paragraph(),
+            'image' => null,
+            'length' => $this->faker->numberBetween(60, 180),
+            'type_id' => 1,
+            'director_id' => null,
         ];
     }
 }
